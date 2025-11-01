@@ -34,7 +34,7 @@ public class ManejadorCliente extends Thread {
     public void run(){
         try{
             // Envia y recibe mensajes a través del socket.
-            // Se envian como object streans porque no solo son cadenas de texto, sino que contienen imagenes
+            // Se envian como object streams porque no solo son cadenas de texto, sino que contienen imagenes
             salida = new ObjectOutputStream(socket.getOutputStream());
             entrada = new ObjectInputStream(socket.getInputStream());
             

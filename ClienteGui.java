@@ -8,7 +8,6 @@ package socketredes;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
 
@@ -24,13 +23,14 @@ public class ClienteGui extends JFrame {
     private JButton botonEnviar;
     private JButton botonImagen;
     private JComboBox<String> comboUsuarios;
+    
     public ClienteGui(String nombre, String host, int puerto) {
-    this.nombre = nombre;
-    this.host = host;
-    this.puerto = puerto;
-    inicializarInterfaz();
-    conectarServidor();
-}
+        this.nombre = nombre;
+        this.host = host;
+        this.puerto = puerto;
+        inicializarInterfaz();
+        conectarServidor();
+    }
     private void inicializarInterfaz() {
         setTitle("Chat - " + nombre);
         setSize(500, 500);
@@ -164,7 +164,7 @@ public class ClienteGui extends JFrame {
         SwingUtilities.invokeLater(() -> {
             try {
                 areaMensajes.getStyledDocument().insertString(
-                        areaMensajes.getStyledDocument().getLength(), texto, null);
+                areaMensajes.getStyledDocument().getLength(), texto, null);
                 areaMensajes.setCaretPosition(areaMensajes.getStyledDocument().getLength());
             } catch (BadLocationException e) {
                 e.printStackTrace();
@@ -174,8 +174,11 @@ public class ClienteGui extends JFrame {
 
     public static void main(String[] args) {
         String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+        
         if (nombre != null && !nombre.trim().isEmpty()) {
             SwingUtilities.invokeLater(() -> new ClienteGui(nombre, "localhost", 5000));
+        } else {
+             JOptionPane.showMessageDialog(null, "Nombre no valido");
         }
     }
 }

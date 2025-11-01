@@ -10,6 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class Servidor {
     
@@ -36,6 +37,7 @@ public class Servidor {
                 mc.start();
             }
         } catch(IOException e) {
+            System.out.println("El puerto 5000 ya está siendo utilizado");
             e.printStackTrace();
         }
     }
@@ -66,8 +68,10 @@ public class Servidor {
     }
     
     public synchronized String[] obtenerUsuarios(){
-        return clientes.stream()
-                .map(ManejadorCliente::getNombre)
-                .toArray(String[]::new);
+        String[] nombres = clientes.stream()
+        .map(ManejadorCliente::getNombre)
+        .toArray(String[]::new); // Array is created and stored
+
+        return nombres; // Return the stored array
     }
 }

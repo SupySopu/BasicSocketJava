@@ -5,6 +5,7 @@
  */
 package socketredes;
 
+import java.util.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +14,22 @@ import javax.swing.JOptionPane;
  */
 public class SocketRedes {
 
+    public static String direccionIp = "192.168.20.10";
+    
     public static void main(String[] args) {
+        
         String opcionServerClient = JOptionPane.showInputDialog("Ingrese 'server' para iniciar servidor o 'client' para iniciar cliente");
         if (opcionServerClient.equalsIgnoreCase("server")) {
             new Servidor(5000).iniciar();
         } else if (opcionServerClient.equalsIgnoreCase("client")) {
-            ClienteGui.main(null); // abre la interfaz gráfica
+            String inputIp = JOptionPane.showInputDialog("Ingrese una IP");
+           
+            if (inputIp.equals(direccionIp)) {
+                ClienteGui.main(null); // abre la interfaz gráfica
+            } else {
+                JOptionPane.showMessageDialog(null, "IP incorrecta");
+            }
+            
         } else {
         System.out.println("Opción inválida.");
         }
