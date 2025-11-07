@@ -117,6 +117,8 @@ public class ClienteGui extends JFrame {
             } catch (IOException e) {
                 appendTexto(" No se pudo enviar el mensaje.\n");
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Mensaje vacio");
         }
     }
 
